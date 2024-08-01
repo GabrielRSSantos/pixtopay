@@ -20,8 +20,8 @@ export default function Header() {
     }
 
     return (
-        <header style={{ backgroundColor: currentPath === '/' || currentPath === '/blog' ? '#161815' : '#FFFFFF' }}>
-            {(currentPath === '/' || currentPath === '/blog') && (
+        <header style={{ backgroundColor: currentPath === '/' || currentPath === '/blog' || currentPath === '/blogpage' ? '#161815' : '#FFFFFF' }}>
+            {(currentPath === '/' || currentPath === '/blog' || currentPath === '/blogpage') && (
                 <div className='flex justify-between bg-transparent'>
 
                     <div style={{ width: '150px' }} className='flex items-center p-5'>

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import DropDown from "./Dropdown";
+import { useTranslation } from 'react-i18next';
 
 export default function Api() {
+    const { t, i18n } = useTranslation();
     const [page, setPage] = useState('sobreApi');
 
     const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         const onScroll = () => setOffset(window.scrollY);
-        // clean up code
         window.removeEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
@@ -32,7 +33,7 @@ export default function Api() {
                         <div className={`${offset >= 0 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                             <p>1</p>
                         </div>
-                        <p className="font-semibold text-base">Sobre API</p>
+                        <p className="font-semibold text-base">{t("Sobre API")}</p>
                     </div>
                 </a>
 
@@ -44,7 +45,7 @@ export default function Api() {
                     <div className={`${offset >= 600 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>2</p>
                     </div>
-                    <p className="font-semibold text-base">Chave API</p>
+                    <p className="font-semibold text-base">{t("Chave API")}</p>
                 </a>
 
                 <div className="border border-gray-300 h-10 bg-gray-500 self-start ml-4"></div>
@@ -55,7 +56,7 @@ export default function Api() {
                     <div className={`${offset >= 1000 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>3</p>
                     </div>
-                    <p className="font-semibold text-base">Clientes</p>
+                    <p className="font-semibold text-base">{t("Clientes")}</p>
                 </a>
 
                 <div className="border border-gray-300 h-10 bg-gray-500 self-start ml-4"></div>
@@ -66,7 +67,7 @@ export default function Api() {
                     <div className={`${offset >= 1800 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>4</p>
                     </div>
-                    <p className="font-semibold text-base">Criar Clientes</p>
+                    <p className="font-semibold text-base">{t("Criar Clientes")}</p>
                 </a>
 
                 <div className="border border-gray-300 h-10 bg-gray-500 self-start ml-4"></div>
@@ -77,7 +78,7 @@ export default function Api() {
                     <div className={`${offset >= 2600 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>5</p>
                     </div>
-                    <p className="font-semibold text-base">Obter Clientes</p>
+                    <p className="font-semibold text-base">{t("Obter Clientes")}</p>
                 </a>
 
                 <div className="border border-gray-300 h-10 bg-gray-500 self-start ml-4"></div>
@@ -88,7 +89,7 @@ export default function Api() {
                     <div className={`${offset >= 3400 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>6</p>
                     </div>
-                    <p className="font-semibold text-base">Editar Clientes</p>
+                    <p className="font-semibold text-base">{t("Editar Clientes")}</p>
                 </a>
 
                 <div className="border border-gray-300 h-10 bg-gray-500 self-start ml-4"></div>
@@ -99,7 +100,7 @@ export default function Api() {
                     <div className={`${offset >= 4500 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>7</p>
                     </div>
-                    <p className="font-semibold text-base">Listar Clientes</p>
+                    <p className="font-semibold text-base">{t("Listar Clientes")}</p>
                 </a>
             </div>
 

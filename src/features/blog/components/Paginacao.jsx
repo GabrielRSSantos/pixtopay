@@ -33,6 +33,7 @@ const PaginatedList = () => {
         return data.map((item) => (
             <Card
                 key={item.id}
+                id={item.id}
                 nome={item.nome}
                 descricao={item.description}
                 foto={item.image}

@@ -40,13 +40,13 @@ export default function Servico() {
 
             <div className="bg-gradient-to-t from-to-gray-main to-gray-main w-full">
 
-                <div className="text-white text-4xl place-items-end font-semibold pb-40 grid grid-cols-4">
-                    <h1>Serviços</h1>
+                <div className="text-white flex justify-center text-4xl place-items-end font-semibold pb-40 lg:grid lg:grid-cols-4">
+                    <h1>{t("Serviços")}</h1>
                 </div>
 
-                <div className="lg:gap-40 pb-40 place-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6">
+                <div className="lg:gap-40 pb-40 place-items-center grid grid-cols-1 lg:grid-cols-6 sm:grid-cols-2">
 
-                    <div className="bg-white rounded-lg w-64 h-72 p-5 col-start-2">
+                    <div className="bg-white rounded-lg w-64 h-72 p-5 lg:col-start-2">
                         <div className="flex items-center space-x-3 pb-3">
                             <BiShieldQuarter color="gray" size={50} />
                             <h1 className="text-2xl font-semibold">{t("Segurança Rigorosa")}</h1>
@@ -81,8 +81,8 @@ export default function Servico() {
                 </div>
 
                 <div>
-                    <div className="mb-20 font grid grid-cols-1 lg:grid-cols-5 text-white">
-                        <div className="space-y-3 text-lg col-start-2">
+                    <div className="space-y-20 sm:space-y-0 mb-20 font grid grid-cols-1 lg:grid-cols-5 text-white">
+                        <div className="space-y-3 text-lg lg:col-start-2">
                             <p>{t("mais de")}</p>
                             <h1 className="text-6xl font-semibold">{t("40 milhões")}</h1>
                             <p className="">{t("de operações de pix todos os meses.")}</p>
