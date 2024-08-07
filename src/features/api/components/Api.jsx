@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DropDown from "./Dropdown";
 import { useTranslation } from 'react-i18next';
+import { LuCopy } from "react-icons/lu";
 
 export default function Api() {
     const { t, i18n } = useTranslation();
@@ -17,15 +18,10 @@ export default function Api() {
 
     console.log(offset)
 
-
-    function handlePage(page) {
-        setPage(page);
-    }
-
     return (
         <div className="flex items-start">
 
-            <div className={`sticky top-10 flex flex-col items-center p-10 space-y-1`}>
+            <div className={`sticky top-10 hidden md:flex flex-col items-center p-10 space-y-1`}>
                 <a
                     href="#SobreAPI"
                     className="">
@@ -97,14 +93,14 @@ export default function Api() {
                 <a
                     href="#ListarClientes"
                     className="flex items-center space-x-2 w-44">
-                    <div className={`${offset >= 4500 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
+                    <div className={`${offset >= 4100 ? 'bg-lime-400' : 'border border-black'} rounded-full w-8 h-8 flex items-center justify-center`}>
                         <p>7</p>
                     </div>
                     <p className="font-semibold text-base">{t("Listar Clientes")}</p>
                 </a>
             </div>
 
-            <div className="ml-60 pb-40 space-y-20">
+            <div className="lg:ml-60 lg:pb-40 pb-20 space-y-20 w-full">
                 <SobreAPI />
                 <ChaveApi />
                 <Clientes />
@@ -122,19 +118,19 @@ const SobreAPI = () => {
     const [pageAPI, setPageAPI] = useState('Javascript');
 
     return (
-        <div id="SobreAPI" className="w-2/3 space-y-5">
+        <div id="SobreAPI" className="lg:w-2/3 space-y-5">
             <h1 className="text-5xl font-semibold">Sobre a API</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
 
             <div className="bg-gray-300 rounded-xl space-y-10 p-5">
                 <DropDown pagina={pageAPI} setPagina={setPageAPI} />
                 {pageAPI === 'Javascript' &&
-                    <pre className="">
+                    <pre className="overflow-x-auto whitespace-pre-wrap break-words">
                         {`const paymentAPI = initPaymentAPI({\n\n  // Chave da API do seu provedor de pagamento\n  apiKey: 'sua_chave_api',\n});\n\npaymentAPI.startPayment({\n  // Dados do pagamento\n  amount: 100.00,\n  currency: 'BRL',\n  description: 'Descrição do produto ou serviço',\n  // Dados do cliente\n  customerName: 'Fulano de Tal',\n  customerEmail: 'fulano@example.com',\n});`}
                     </pre>}
-                {pageAPI === 'Typescript' && <Typescript />}
-                {pageAPI === 'Java' && <Java />}
-                {pageAPI === 'C#' && <CSharp />}
+                {pageAPI === 'Typescript' && <pre>TypeScript</pre>}
+                {pageAPI === 'Java' && <pre>Java</pre>}
+                {pageAPI === 'C#' && <pre>C#</pre>}
             </div>
 
         </div>
@@ -142,13 +138,28 @@ const SobreAPI = () => {
 }
 
 const ChaveApi = () => {
+    const textToCopy = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQ...';
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('Texto copiado para o clipboard!');
+        }).catch(err => {
+            console.error('Erro ao copiar o texto: ', err);
+        });
+    };
+
     return (
-        <div id="ChaveApi" className="w-2/3 space-y-10">
+        <div id="ChaveApi" className="lg:w-2/3 space-y-10">
             <h1 className="text-5xl font-semibold">ChaveAPI</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
             <div className="p-10 pb-20 bg-lime-400 rounded-xl space-y-10">
                 <h2 className="font-bold">Chave da API</h2>
-                <h2 type="text" className="p-2 rounded-xl bg-white" >0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQ...</h2>
+                <div className="w-full flex items-center">
+                    <h2 type="text" className="p-2 rounded-xl bg-white overflow-x-auto whitespace-pre-wrap break-words">
+                        {textToCopy}
+                    </h2>
+                    <LuCopy className="w-10 cursor-pointer" onClick={copyToClipboard} size={20}/>
+                </div>
             </div>
         </div>
     );
@@ -156,7 +167,7 @@ const ChaveApi = () => {
 
 const Clientes = () => {
     return (
-        <div id="Clientes" className="w-2/3 space-y-10">
+        <div id="Clientes" className="lg:w-2/3 space-y-10">
             <h1 className="text-5xl font-semibold">Clientes</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
 
@@ -195,7 +206,7 @@ const Clientes = () => {
 
 const CriarClientes = () => {
     return (
-        <div id="CriarClientes" className="w-2/3 space-y-10">
+        <div id="CriarClientes" className="lg:w-2/3 space-y-10">
             <h1 className="text-5xl font-semibold">CriarClientes</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
 
@@ -265,7 +276,7 @@ const CriarClientes = () => {
 
 const ObterClientes = () => {
     return (
-        <div id="ObterClientes" className="w-2/3 space-y-10">
+        <div id="ObterClientes" className="lg:w-2/3 space-y-10">
             <h1 className="text-5xl font-semibold">ObterClientes</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
 
@@ -335,7 +346,7 @@ const ObterClientes = () => {
 
 const EditarClientes = () => {
     return (
-        <div id="EditarClientes" className="w-2/3 space-y-10">
+        <div id="EditarClientes" className="lg:w-2/3 space-y-10">
             <h1 className="text-5xl font-semibold">EditarClientes</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
 
@@ -405,7 +416,7 @@ const EditarClientes = () => {
 
 const ListarClientes = () => {
     return (
-        <div id="ListarClientes" className="w-2/3 space-y-10">
+        <div id="ListarClientes" className="lg:w-2/3 space-y-10">
             <h1 className="text-5xl font-semibold">ListarClientes</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum, odio ut cursus mollis, enim dolor imperdiet arcu, in consectetur lorem diam non purus. Mauris semper eros nec mauris dignissim feugiat sed nec orci. Suspendisse potenti. Pellentesque feugiat ullamcorper elementum. Maecenas et tristique nisl, eleifend semper ex. Ut aliquam ipsum enim, vel interdum massa cursus quis. Quisque ut aliquet tellus. Aliquam a velit condimentum, dapibus sem vitae, iaculis odio. Curabitur laoreet eu lectus vitae ullamcorper.</p>
 

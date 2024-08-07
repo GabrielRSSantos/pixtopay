@@ -18,22 +18,28 @@ import Tablet from "../../../assets/images/Tablet.png";
 
 export default function Servico() {
     const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1024px)' })
+    const [isOpen, setIsOpen] = useState(false);
     const [page, setPage] = useState('vantagens');
     const { t } = useTranslation();
 
     function fotoHandler() {
         if (page === 'vantagens') {
             return Mulher;
-        } else if (page === 'suport') {
+        } else if (page === 'suporte') {
             return Homem;
         } else if (page === 'relatorio') {
             return Tablet;
         } else if (page === 'recursos') {
             return CidadeFoto;
-        }else if (page === 'eventos') {
+        } else if (page === 'eventos') {
             return Celular;
         }
     }
+
+    const handleButtonClick = (page) => {
+        setPage(page);
+        setIsOpen(false);
+    };
 
     return (
         <div className="w-full flex flex-col items-center">
@@ -105,7 +111,7 @@ export default function Servico() {
             </div>
 
             <div className="w-full p-20 lg:p-10 lg:pl-48 grid gap-20 grid-cols-1 lg:grid-cols-4">
-                
+
                 <div>
                     <img src={fotoHandler()} />
                 </div>
@@ -132,8 +138,8 @@ export default function Servico() {
                                     <MdOutlineSupportAgent className="ml-2" />
                                     <button
                                         className="text-start w-full p-2"
-                                        onClick={() => setPage('suport')}
-                                    >{t("Suport")}
+                                        onClick={() => setPage('suporte')}
+                                    >{t("Suporte")}
                                     </button>
                                 </div>
 
@@ -166,7 +172,54 @@ export default function Servico() {
 
                             </nav>
                         </div>
-                        : <DropDown pagina={page} setPagina={setPage} />
+                        :
+                        <div className="relative inline-block text-left">
+                <div>
+                    <button
+                        className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        Opções
+                    </button>
+                </div>
+
+                {isOpen && (
+                    <div className="absolute z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none">
+                        <div className="py-1">
+                            <button
+                                onClick={() => handleButtonClick('eventos')}
+                                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Eventos de Gateway
+                            </button>
+                            <button
+                                onClick={() => handleButtonClick('suporte')}
+                                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Suporte
+                            </button>
+                            <button
+                                onClick={() => handleButtonClick('relatorio')}
+                                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Relatórios
+                            </button>
+                            <button
+                                onClick={() => handleButtonClick('recursos')}
+                                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Recursos adicionais
+                            </button>
+                            <button
+                                onClick={() => handleButtonClick('vantagens')}
+                                className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                            >
+                                Vantagens
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
                 }
 
                 <div className="col-span-2">

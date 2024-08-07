@@ -22,13 +22,13 @@ export default function Header() {
     return (
         <header style={{ backgroundColor: currentPath === '/' || currentPath === '/blog' || currentPath === '/blogpage' ? '#161815' : '#FFFFFF' }}>
             {(currentPath === '/' || currentPath === '/blog' || currentPath === '/blogpage') && (
-                <div className='flex justify-between bg-transparent'>
+                <div className='lg:flex lg:justify-between bg-transparent'>
 
                     <div style={{ width: '150px' }} className='flex items-center p-5'>
                         <img src={logo} />
                     </div>
 
-                    <nav className='p-2 text-white self-end flex gap-10 items-center'>
+                    <nav className='p-2 text-white self-end flex lg:gap-10 items-center'>
                         <Link to="/" className='transition-all duration-300 p-2 text-gray-500 hover:text-white'>{t("Inicio")}</Link>
                         <Link to="/blog" className='transition-all duration-300 p-2 text-gray-500 hover:text-white'>{t("Blog")}</Link>
                         <Link to="/api" className='transition-all duration-300 p-2 text-gray-500 hover:text-white'>API</Link>
@@ -36,7 +36,7 @@ export default function Header() {
                             <FaWhatsapp size={20} />
                             <Link className='p-2'>{t("Abra sua conta")}</Link>
                         </div>
-                        <div className='flex space-x-3 mr-10'>
+                        <div className='lg:flex space-x-1 lg:space-x-3 lg:mr-10'>
                             <button onClick={() => changeLanguage('en')}>
                                 <EUA />
                             </button>
@@ -53,13 +53,13 @@ export default function Header() {
 
             )}
             {currentPath === '/api' && (
-                <div className='flex justify-between bg-transparent'>
+                <div className='lg:flex lg:justify-between bg-transparent'>
 
                     <div style={{ width: '150px' }} className='flex items-center p-5'>
                         <img src={logoverde} />
                     </div>
 
-                    <nav className='p-2 text-black self-end flex gap-10 items-center'>
+                    <nav className='p-2 text-white self-end flex lg:gap-10 items-center'>
                         <Link to="/" className='transition-all duration-300 p-2 text-gray-500 hover:text-black'>{t("Inicio")}</Link>
                         <Link to="/blog" className='transition-all duration-300 p-2 text-gray-500 hover:text-black'>{t("Blog")}</Link>
                         <Link to="/api" className='transition-all duration-300 p-2 text-gray-500 hover:text-black'>API</Link>

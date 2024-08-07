@@ -109,7 +109,7 @@ const PaginatedList = () => {
 
     return (
         <div>
-            <ul className='grid grid-cols-2 gap-x-10 text-white'>
+            <ul className='grid lg:grid-cols-2 gap-x-10 text-white'>
                 {currentItems.map((item, index) => (
                     <li key={index}>
                         {item}

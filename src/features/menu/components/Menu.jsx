@@ -7,7 +7,7 @@ export default function Menu({ page }) {
     return (
         <div>
             {page === 'eventos' && <Eventos />}
-            {page === 'suport' && <Suporte />}
+            {page === 'suporte' && <Suporte />}
             {page === 'relatorio' && <Relatorio />}
             {page === 'recursos' && <Recrusos />}
             {page === 'vantagens' && <Vantagens />}
